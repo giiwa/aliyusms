@@ -20,6 +20,8 @@ package org.giiwa.aliyusms.web;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.giiwa.aliyusms.web.admin.aliyusms;
+import org.giiwa.app.web.admin.setting;
 import org.giiwa.framework.noti.Sms;
 import org.giiwa.framework.web.LifeListener;
 import org.giiwa.framework.web.Module;
@@ -32,28 +34,32 @@ import org.giiwa.framework.web.Module;
  */
 public class AliyusmsListener implements LifeListener {
 
-    static Log log = LogFactory.getLog(AliyusmsListener.class);
+	static Log log = LogFactory.getLog(AliyusmsListener.class);
 
-    /**
-     * be called when starting
-     */
-    public void onStart(final Configuration conf, final Module module) {
-        log.warn("aliyusms is starting");      
-        
-        Sms.register(new AliyuSms());
-    }
+	/**
+	 * be called when starting
+	 */
+	public void onStart(final Configuration conf, final Module module) {
+		log.warn("aliyusms is starting");
 
-    public void onStop() {
-    }
+		// setting
+		setting.register("aliyusms", aliyusms.class);
 
-    /**
-     * test and install the database part
-     */
-    public void upgrade(Configuration conf, Module module) {
-        log.debug("installing");
-    }
+		// sms sender
+		Sms.register(new AliyuSms());
+	}
 
-    public void uninstall(Configuration conf, Module module) {
-    }
+	public void onStop() {
+	}
+
+	/**
+	 * test and install the database part
+	 */
+	public void upgrade(Configuration conf, Module module) {
+		log.debug("installing");
+	}
+
+	public void uninstall(Configuration conf, Module module) {
+	}
 
 }
