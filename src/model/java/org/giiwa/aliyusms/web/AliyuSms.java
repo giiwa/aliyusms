@@ -12,13 +12,12 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
-public class AliyuSms implements Sms.ISender{
+public class AliyuSms implements Sms.ISender {
 
 	public static String url = "http://gw.api.taobao.com/router/rest";
 	public static String appkey = "23332773";
 	public static String secret = "768520953976bac7fc1be026dc08bd9e";
 
-	
 	/*
 	 * 阿里大鱼短信接口
 	 */
