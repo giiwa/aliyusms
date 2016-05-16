@@ -22,6 +22,7 @@ public class aliyusms extends setting {
 	@Override
 	public void set() {
 
+		ConfigGlobal.setConfig("aliyu.sign", this.getString("aliyu_sign"));
 		ConfigGlobal.setConfig("aliyu.appkey", this.getString("aliyu_appkey"));
 		ConfigGlobal.setConfig("aliyu.secret", this.getString("aliyu_secret"));
 		ConfigGlobal.setConfig("aliyu.templatecode", this.getString("aliyu_templatecode"));
@@ -40,6 +41,7 @@ public class aliyusms extends setting {
 		// public static String secret = "6270908d7574497bcbbdd11b23e6bcf3";
 
 		this.set("aliyu_url", AliyuSms.url);
+		this.set("aliyu_sign", ConfigGlobal.s("aliyu.sign", null));
 		this.set("aliyu_appkey", ConfigGlobal.s("aliyu.appkey", null));
 		this.set("aliyu_secret", ConfigGlobal.s("aliyu.secret", null));
 		this.set("aliyu_templatecode", ConfigGlobal.s("aliyu.templatecode", null));
