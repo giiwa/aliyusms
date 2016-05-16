@@ -1,9 +1,9 @@
 package org.giiwa.aliyusms.web.admin;
 
+import org.giiwa.aliyusms.web.AliyuSms;
 import org.giiwa.app.web.admin.setting;
 import org.giiwa.core.bean.X;
 import org.giiwa.core.conf.ConfigGlobal;
-import org.giiwa.framework.sync.SyncTask;
 
 /**
  * web api: /admin/setting/[method]/sync
@@ -15,22 +15,36 @@ import org.giiwa.framework.sync.SyncTask;
  */
 public class aliyusms extends setting {
 
-    @Override
-    public void reset() {
-    }
+	@Override
+	public void reset() {
+	}
 
-    @Override
-    public void set() {
+	@Override
+	public void set() {
 
-        this.set(X.MESSAGE, "修改成功！");
+		ConfigGlobal.setConfig("aliyu.appkey", this.getString("aliyu_appkey"));
+		ConfigGlobal.setConfig("aliyu.secret", this.getString("aliyu_secret"));
+		ConfigGlobal.setConfig("aliyu.templatecode", this.getString("aliyu_templatecode"));
 
-        get();
-    }
+		this.set(X.MESSAGE, "修改成功！");
 
-    @Override
-    public void get() {
+		get();
+	}
 
-        this.set("page", "/admin/setting.aliyusms.html");
-    }
+	@Override
+	public void get() {
+
+		// public final static String url =
+		// "http://gw.api.taobao.com/router/rest";
+		// public static String appkey = "23365917";
+		// public static String secret = "6270908d7574497bcbbdd11b23e6bcf3";
+
+		this.set("aliyu_url", AliyuSms.url);
+		this.set("aliyu_appkey", ConfigGlobal.s("aliyu.appkey", null));
+		this.set("aliyu_secret", ConfigGlobal.s("aliyu.secret", null));
+		this.set("aliyu_templatecode", ConfigGlobal.s("aliyu.templatecode", null));
+
+		this.set("page", "/admin/setting.aliyusms.html");
+	}
 
 }
