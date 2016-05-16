@@ -4,7 +4,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.giiwa.core.bean.X;
 import org.giiwa.core.conf.ConfigGlobal;
-import org.giiwa.framework.bean.OpLog;
 import org.giiwa.framework.noti.Sms;
 
 import net.sf.json.JSONObject;
@@ -30,7 +29,7 @@ public class AliyuSms implements Sms.ISender {
 
 		try {
 
-			String sign = json.containsKey("sign") ? json.getString("sign") : X.EMPTY;
+			String sign = json.containsKey("sign") ? json.getString("sign") : ConfigGlobal.s("aliyu.sign", X.EMPTY);
 			String templateCode = json.containsKey("templatecode") ? json.getString("templatecode") : X.EMPTY;
 			if (!X.isEmpty(templateCode)) {
 				String s = ConfigGlobal.s("aliyu.templatecode", X.EMPTY);
