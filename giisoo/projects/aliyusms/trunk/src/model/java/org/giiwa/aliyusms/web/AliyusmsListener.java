@@ -46,7 +46,7 @@ public class AliyusmsListener implements LifeListener {
 		setting.register("aliyusms", aliyusms.class);
 
 		// sms sender
-		Sms.register(new AliyuSms());
+		Sms.register(0, new AliyuSms());
 	}
 
 	public void onStop() {
