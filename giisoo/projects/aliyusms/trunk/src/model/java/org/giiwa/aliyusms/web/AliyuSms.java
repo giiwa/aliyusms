@@ -1,12 +1,14 @@
 package org.giiwa.aliyusms.web;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.giiwa.core.bean.X;
+import org.giiwa.core.conf.ConfigGlobal;
 import org.giiwa.framework.bean.OpLog;
 import org.giiwa.framework.noti.Sms;
 
 import net.sf.json.JSONObject;
 
-import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
@@ -14,89 +16,51 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
 public class AliyuSms implements Sms.ISender {
 
-	public static String url = "http://gw.api.taobao.com/router/rest";
-	public static String appkey = "23332773";
-	public static String secret = "768520953976bac7fc1be026dc08bd9e";
+	static final Log log = LogFactory.getLog(AliyuSms.class);
 
-	/*
-	 * 阿里大鱼短信接口
+	/**
+	 * giiwa 的appkey
 	 */
-	public static JSONObject sendsms(String sign, String mobile, String templateCode, JSONObject json) {
-		JSONObject logjson = new JSONObject();
-		logjson.put("channel", "ALI");
+	public final static String url = "http://gw.api.taobao.com/router/rest";
+	// public static String appkey = "23365917";
+	// public static String secret = "6270908d7574497bcbbdd11b23e6bcf3";
+
+	@Override
+	public boolean send(String mobile, JSONObject json) {
+
 		try {
 
+			String sign = json.containsKey("sign") ? json.getString("sign") : X.EMPTY;
+			String templateCode = json.containsKey("templatecode") ? json.getString("templatecode") : X.EMPTY;
+			if (!X.isEmpty(templateCode)) {
+				String s = ConfigGlobal.s("aliyu.templatecode", X.EMPTY);
+				String[] ss = s.split(";");
+				for (String s1 : ss) {
+					String[] s2 = s1.split("=");
+					if (s2.length == 2 && X.isSame(templateCode, s2[0].trim())) {
+						templateCode = s2[1].trim();
+						break;
+					}
+				}
+			}
+			String appkey = ConfigGlobal.s("aliyu.appkey", X.EMPTY);
+			String secret = ConfigGlobal.s("aliyu.secret", X.EMPTY);
 			TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
 			AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
-			req.setExtend("quyun");
-			req.setSmsType("normal");
+			// req.setExtend("quyun");
+			// req.setSmsType("normal");
 			req.setSmsFreeSignName(sign);
 			req.setSmsParamString(json.toString());
 			req.setRecNum(mobile);
 			req.setSmsTemplateCode(templateCode);
-			AlibabaAliqinFcSmsNumSendResponse rsp;
-			rsp = client.execute(req);
-			LogFactory.getLog(AliyuSms.class).info("-------AliyuSms-------sendsms=" + rsp.getBody());
-			if (null != rsp.getResult() && rsp.getResult().getSuccess() && rsp.getResult().getSuccess()) {
-				logjson.put("status", 0);
-			} else {
-				logjson.put("status", 1);
-				logjson.put("error", rsp.getSubCode());
-			}
 
-		} catch (ApiException e) {
-			OpLog.error("sms", "AliyuSms exception", e.getMessage());
-			logjson.put("status", 1);
-			logjson.put("error", e);
-		} catch (Exception e) {
-			OpLog.error("sms", "AliyuSms exception", e.getMessage());
-			logjson.put("status", 1);
-			logjson.put("error", e);
-		}
+			AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 
-		String content = getMessage(templateCode, json);
-		logjson.put("mobile", mobile);
-		logjson.put("message", content);
-
-		return logjson;
-
-	}
-
-	/*
-	 * 阿里大鱼短信模板转换短信内容
-	 */
-	public static String getMessage(String templateCode, JSONObject json) {
-		String templateContent = templateCode;
-		try {
-			// Map<String, String> map = SMSTemplate.getMessageTemplate();
-			// templateContent = map.get(templateCode);
-			// for (Iterator iter = json.keySet().iterator(); iter.hasNext();) {
-			// String key = (String) iter.next();
-			// String value = json.getString(key);
-			// templateContent = templateContent.replace("${" + key + "}",
-			// value);
-			// }
+			return rsp.getResult() != null && rsp.getResult().getSuccess();
 
 		} catch (Exception e) {
-			LogFactory.getLog(AliyuSms.class).info("-------getMessage-------error");
+			log.error("sendsms error, mobile=" + mobile + ", json=" + json, e);
 		}
-		return templateContent;
-	}
-
-	public static void main(String[] args) {
-		String sign = "趣孕";
-		String mobile = "18810475972";
-		String templateCode = "SMS_6746036";
-		JSONObject json = new JSONObject();
-		json.put("name", "药给力");
-		json.put("code", "eqweqw12");
-		JSONObject jsons = sendsms(sign, mobile, templateCode, json);
-		System.out.println("---jsons---" + jsons.toString());
-
-	}
-
-	@Override
-	public boolean send(String mobile, JSONObject jo) {
 
 		return false;
 	}
