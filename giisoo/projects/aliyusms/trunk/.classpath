@@ -7,8 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="depends/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="depends/activemq-client-5.10.0.jar"/>
-	<classpathentry kind="lib" path="depends/ant-contrib-1.0b3.jar"/>
 	<classpathentry kind="lib" path="depends/commons-beanutils-1.8.0.jar"/>
 	<classpathentry kind="lib" path="depends/commons-beanutils-core-1.8.0.jar"/>
 	<classpathentry kind="lib" path="depends/commons-codec-1.8.jar"/>
@@ -26,7 +24,6 @@
 	<classpathentry kind="lib" path="depends/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="depends/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
 	<classpathentry kind="lib" path="depends/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="depends/giiwa-1.0.jar"/>
 	<classpathentry kind="lib" path="depends/hawtbuf-1.10.jar"/>
 	<classpathentry kind="lib" path="depends/hawtdispatch-1.20.jar"/>
 	<classpathentry kind="lib" path="depends/hawtdispatch-transport-1.20.jar"/>
@@ -47,16 +44,13 @@
 	<classpathentry kind="lib" path="depends/memcached-2.6.3.jar"/>
 	<classpathentry kind="lib" path="depends/metadata-extractor-2.6.4.jar"/>
 	<classpathentry kind="lib" path="depends/mongo-java-driver-2.10.0.jar"/>
-	<classpathentry kind="lib" path="depends/mqtt-client-1.10.jar"/>
-	<classpathentry kind="lib" path="depends/postgresql-9.0-801.jdbc4.jar"/>
-	<classpathentry kind="lib" path="depends/qpid-amqp-1-0-client-0.26.jar"/>
-	<classpathentry kind="lib" path="depends/qpid-amqp-1-0-client-jms-0.26.jar"/>
-	<classpathentry kind="lib" path="depends/qpid-amqp-1-0-common-0.26.jar"/>
 	<classpathentry kind="lib" path="depends/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="depends/slf4j-api-1.5.8.jar"/>
 	<classpathentry kind="lib" path="depends/slf4j-log4j12-1.5.8.jar"/>
 	<classpathentry kind="lib" path="depends/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="depends/xmpcore-2.6.4.jar"/>
-	<classpathentry kind="lib" path="src/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160326.jar"/>
+	<classpathentry kind="lib" path="depends/giiwa-1.0.2.jar"/>
+	<classpathentry kind="lib" path="depends/taobao-sdk-java-auto_1455552377940-20160607-source.jar"/>
+	<classpathentry kind="lib" path="src/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160607.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
