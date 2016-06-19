@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
 import org.giiwa.aliyusms.web.admin.aliyusms;
 import org.giiwa.app.web.admin.setting;
 import org.giiwa.framework.noti.Sms;
-import org.giiwa.framework.web.LifeListener;
+import org.giiwa.framework.web.IListener;
 import org.giiwa.framework.web.Module;
 
 /**
@@ -32,7 +32,7 @@ import org.giiwa.framework.web.Module;
  * @author joe
  *
  */
-public class AliyusmsListener implements LifeListener {
+public class AliyusmsListener implements IListener {
 
 	static Log log = LogFactory.getLog(AliyusmsListener.class);
 

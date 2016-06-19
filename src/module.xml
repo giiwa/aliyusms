@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<id>11</id>
+	<name>aliyusms</name>
+	<package>org.giiwa.aliyusms.web</package>
+	<screenshot>/images/demo_screenshot.png</screenshot>
+	<version>1.0.1</version>
+	<build>0</build>
+	<enabled>true</enabled>
+	<readme>alidayu sms sender</readme>
+	<listener>
+		<class>org.giiwa.aliyusms.web.AliyusmsListener</class>
+	</listener>
+</module>
