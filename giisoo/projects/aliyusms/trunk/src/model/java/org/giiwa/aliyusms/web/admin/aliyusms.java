@@ -27,6 +27,8 @@ public class aliyusms extends setting {
     Global.setConfig("aliyu.secret", this.getString("aliyu_secret"));
     Global.setConfig("aliyu.templatecode", this.getString("aliyu_templatecode"));
 
+    AliyuSms.reset();
+
     this.set(X.MESSAGE, "修改成功！");
 
     get();
