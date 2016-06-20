@@ -1,0 +1,40 @@
+<div class='head'>
+	$lang.get('sms.test.title')
+</div>
+
+#parse('/widget/widget.message.html')
+
+<div class='tabs'>
+	<a href='/admin/smstest' class="selected">$lang.get('a.smstest')</a>
+</div>
+
+<form action='/admin/smstest'  method='post' class='form' enctype="multipart/form-data">
+	<div>
+		<label><h3>Mobile(
+			<r>
+				*
+			</r>):</h3>
+			<input type='text' name='mobile' value="$!mobile"/>
+		</label>
+	</div>
+	<div>
+		<label><h3>Templatecode:</h3>
+			<input type='text' name='code' value="$!code"/>
+		</label>
+	</div>
+	<div>
+		<label><h3>Sign:</h3>
+			<input type='text' name='sign' value="$!sign"/>
+		</label>
+	</div>
+	<div>
+		<label><h3>Content:</h3> 			<textarea>#if($content)$content#else{}#end</textarea>
+			<g>
+				json of params
+			</g></label>
+	</div>
+
+	<button type='submit'>
+		$lang.get('btn.send')
+	</button>
+</form>
