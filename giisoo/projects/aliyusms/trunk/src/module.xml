@@ -3,7 +3,7 @@
 	<id>11</id>
 	<name>aliyusms</name>
 	<package>org.giiwa.aliyusms.web</package>
-	<screenshot>/images/demo_screenshot.png</screenshot>
+	<screenshot>/images/aliyu_screenshot.png</screenshot>
 	<version>1.0.1</version>
 	<build>0</build>
 	<enabled>true</enabled>
