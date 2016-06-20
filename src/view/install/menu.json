@@ -1,0 +1,5 @@
+[{'name':'admin', 'childs':[
+		{name:'menu.tools',  seq:1000, classes:'icon-hammer', childs:[
+			{name:'menu.smstest',  load:'/admin/smstest', seq:20, classes:'icon-bubble2'}
+		]},
+]}]

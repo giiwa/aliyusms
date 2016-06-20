@@ -63,8 +63,8 @@ public class AliyuSms implements Sms.ISender {
       String secret = Global.s("aliyu.secret", X.EMPTY);
       TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
       AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
-      // req.setExtend("quyun");
-      // req.setSmsType("normal");
+
+      req.setSmsType("normal");
       req.setSmsFreeSignName(sign);
       req.setSmsParamString(json.toString());
       req.setRecNum(mobile);
@@ -72,18 +72,8 @@ public class AliyuSms implements Sms.ISender {
 
       AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 
-      // TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-      // AlibabaAliqinFcSmsNumSendRequest req = new
-      // AlibabaAliqinFcSmsNumSendRequest();
-      // req.setExtend("123456");
-      // req.setSmsType("normal");
-      // req.setSmsFreeSignName("阿里大鱼");
-      // req.setSmsParamString("{\"code\":\"1234\",\"product\":\"alidayu\"}");
-      // req.setRecNum("13000000000");
-      // req.setSmsTemplateCode("SMS_585014");
-      // AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
-      // System.out.println(rsp.getBody());
-      //
+      if (log.isDebugEnabled())
+        log.debug("aliyu sendsms to [" + mobile + "], result=" + rsp.getResult() + ", content=" + json);
       return rsp.getResult() != null && rsp.getResult().getSuccess();
 
     } catch (Exception e) {
