@@ -26,7 +26,7 @@ public class AliyuSms implements Sms.ISender {
   public static void reset() {
     Map<String, String> m1 = new HashMap<String, String>();
 
-    String s = Global.s("aliyu.templatecode", X.EMPTY);
+    String s = Global.getString("aliyu.templatecode", X.EMPTY);
     String[] ss = s.split(";");
     for (String s1 : ss) {
       String[] s2 = s1.split("=");
@@ -50,7 +50,7 @@ public class AliyuSms implements Sms.ISender {
 
     try {
 
-      String sign = json.containsKey("sign") ? json.getString("sign") : Global.s("aliyu.sign", X.EMPTY);
+      String sign = json.containsKey("sign") ? json.getString("sign") : Global.getString("aliyu.sign", X.EMPTY);
       String templateCode = json.containsKey("templatecode") ? json.getString("templatecode") : X.EMPTY;
       if (codes.size() == 0 || System.currentTimeMillis() - lastupdated > X.AMINUTE) {
         reset();
@@ -59,8 +59,8 @@ public class AliyuSms implements Sms.ISender {
       if (!X.isEmpty(templateCode)) {
         templateCode = codes.get(templateCode);
       }
-      String appkey = Global.s("aliyu.appkey", X.EMPTY);
-      String secret = Global.s("aliyu.secret", X.EMPTY);
+      String appkey = Global.getString("aliyu.appkey", X.EMPTY);
+      String secret = Global.getString("aliyu.secret", X.EMPTY);
       TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
       AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 

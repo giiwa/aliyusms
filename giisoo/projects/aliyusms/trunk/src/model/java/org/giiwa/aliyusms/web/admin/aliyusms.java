@@ -43,10 +43,10 @@ public class aliyusms extends setting {
     // public static String secret = "6270908d7574497bcbbdd11b23e6bcf3";
 
     this.set("aliyu_url", AliyuSms.url);
-    this.set("aliyu_sign", Global.s("aliyu.sign", null));
-    this.set("aliyu_appkey", Global.s("aliyu.appkey", null));
-    this.set("aliyu_secret", Global.s("aliyu.secret", null));
-    this.set("aliyu_templatecode", Global.s("aliyu.templatecode", null));
+    this.set("aliyu_sign", Global.getString("aliyu.sign", null));
+    this.set("aliyu_appkey", Global.getString("aliyu.appkey", null));
+    this.set("aliyu_secret", Global.getString("aliyu.secret", null));
+    this.set("aliyu_templatecode", Global.getString("aliyu.templatecode", null));
 
     this.set("page", "/admin/setting.aliyusms.html");
   }
