@@ -35,7 +35,6 @@
 	<classpathentry kind="lib" path="depends/jpinyin-1.0.jar"/>
 	<classpathentry kind="lib" path="depends/js-1.7.6.jar"/>
 	<classpathentry kind="lib" path="depends/jsch-0.1.53.jar"/>
-	<classpathentry kind="lib" path="depends/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="depends/jsoup-1.5.2.jar"/>
 	<classpathentry kind="lib" path="depends/jtidy-r938.jar"/>
 	<classpathentry kind="lib" path="depends/jxl-2.6.12.jar"/>

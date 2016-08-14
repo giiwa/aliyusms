@@ -7,9 +7,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.giiwa.core.bean.X;
 import org.giiwa.core.conf.Global;
+import org.giiwa.core.json.JSON;
 import org.giiwa.framework.noti.Sms;
-
-import net.sf.json.JSONObject;
 
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -46,7 +45,7 @@ public class AliyuSms implements Sms.ISender {
   // public static String secret = "6270908d7574497bcbbdd11b23e6bcf3";
 
   @Override
-  public boolean send(String mobile, JSONObject json) {
+  public boolean send(String mobile, JSON json) {
 
     try {
 

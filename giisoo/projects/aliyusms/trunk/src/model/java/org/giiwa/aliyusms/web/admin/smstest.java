@@ -1,11 +1,10 @@
 package org.giiwa.aliyusms.web.admin;
 
 import org.giiwa.core.bean.X;
+import org.giiwa.core.json.JSON;
 import org.giiwa.framework.noti.Sms;
 import org.giiwa.framework.web.Model;
 import org.giiwa.framework.web.Path;
-
-import net.sf.json.JSONObject;
 
 public class smstest extends Model {
 
@@ -21,8 +20,8 @@ public class smstest extends Model {
     this.set("content", content);
 
     if (method.isPost()) {
-      JSONObject jo = new JSONObject();
-      jo.putAll(JSONObject.fromObject(content));
+      JSON jo = new JSON();
+      jo.putAll(JSON.fromObject(content));
       if (!X.isEmpty(sign)) {
         jo.put("sign", sign);
       }
