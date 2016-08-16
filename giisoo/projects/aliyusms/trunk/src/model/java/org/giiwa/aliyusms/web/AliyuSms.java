@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.giiwa.core.bean.X;
 import org.giiwa.core.conf.Global;
 import org.giiwa.core.json.JSON;
+import org.giiwa.framework.bean.OpLog;
 import org.giiwa.framework.noti.Sms;
 
 import com.taobao.api.DefaultTaobaoClient;
@@ -20,6 +21,7 @@ public class AliyuSms implements Sms.ISender {
   static final Log           log         = LogFactory.getLog(AliyuSms.class);
 
   static Map<String, String> codes       = new HashMap<String, String>();
+
   static long                lastupdated = 0;
 
   public static void reset() {
@@ -56,6 +58,10 @@ public class AliyuSms implements Sms.ISender {
       }
 
       if (!X.isEmpty(templateCode)) {
+        if (!codes.containsKey(templateCode)) {
+          OpLog.error("sms", "[" + templateCode + "] missed", null);
+        }
+
         templateCode = codes.get(templateCode);
       }
       String appkey = Global.getString("aliyu.appkey", X.EMPTY);
