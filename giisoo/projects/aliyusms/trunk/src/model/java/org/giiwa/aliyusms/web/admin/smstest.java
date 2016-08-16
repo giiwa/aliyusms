@@ -20,8 +20,7 @@ public class smstest extends Model {
     this.set("content", content);
 
     if (method.isPost()) {
-      JSON jo = new JSON();
-      jo.putAll(JSON.fromObject(content));
+      JSON jo = JSON.fromObject(content);
       if (!X.isEmpty(sign)) {
         jo.put("sign", sign);
       }
