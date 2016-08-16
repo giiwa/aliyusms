@@ -52,7 +52,7 @@ public class AliyuSms implements Sms.ISender {
     try {
 
       String sign = json.containsKey("sign") ? json.getString("sign") : Global.getString("aliyu.sign", X.EMPTY);
-      String templateCode = json.getString("templatecode");
+      String templateCode = json.getString("template");
       if (codes.size() == 0 || System.currentTimeMillis() - lastupdated > X.AMINUTE) {
         reset();
       }
