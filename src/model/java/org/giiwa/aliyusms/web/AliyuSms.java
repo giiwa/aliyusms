@@ -52,7 +52,7 @@ public class AliyuSms implements Sms.ISender {
     try {
 
       String sign = json.containsKey("sign") ? json.getString("sign") : Global.getString("aliyu.sign", X.EMPTY);
-      String templateCode = json.containsKey("templatecode") ? json.getString("templatecode") : X.EMPTY;
+      String templateCode = json.getString("templatecode");
       if (codes.size() == 0 || System.currentTimeMillis() - lastupdated > X.AMINUTE) {
         reset();
       }
@@ -78,7 +78,9 @@ public class AliyuSms implements Sms.ISender {
       AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 
       if (log.isDebugEnabled())
-        log.debug("aliyu sendsms to [" + mobile + "], result=" + rsp.getResult() + ", content=" + json);
+        log.debug("aliyu sendsms to [" + mobile + "], result=" + rsp.getResult() + ", content=" + json + ", rsp="
+            + rsp.getBody());
+
       return rsp.getResult() != null && rsp.getResult().getSuccess();
 
     } catch (Exception e) {
